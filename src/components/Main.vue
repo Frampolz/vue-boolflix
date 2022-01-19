@@ -36,14 +36,18 @@ export default {
   created() {},
   methods: {
     getFilm(text) {
+      //il dato inserito dentro l'input diventa il paramentro da inserire dentro la chiamata axios
       this.filmSearch = text;
+      //chiamata axios
       axios
         .get(this.queryPath, {
           params: {
+            //parametro preso dal dato inserito dall'utente
             query: this.filmSearch,
           },
         })
         .then((result) => {
+          //dato restituito dalla chiamata axios
           this.filmList = result.data.results;
           console.log(this.filmList);
         })
