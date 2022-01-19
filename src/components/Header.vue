@@ -1,10 +1,5 @@
 <template>
-  <header>
-    <div class="search">
-      <input type="text" />
-      <button>search</button>
-    </div>
-  </header>
+  <header></header>
 </template>
 
 <script>
