@@ -1,17 +1,20 @@
 <template>
   <div class="film-thumb">
     <h2>
-      {{ filmTitle }}
+      {{ filmCallObj.title }}
     </h2>
     <h3>
-      {{ filmTitleOrig }}
+      {{ filmCallObj.original_title }}
     </h3>
     <h4>
-      {{ filmOrigLang }}
+      {{ filmCallObj.original_language }}
     </h4>
     <h5>
-      {{ filmVote }}
+      {{ filmCallObj.language }}
     </h5>
+    <h6>
+      {{ filmCallObj.vote_average }}
+    </h6>
   </div>
 </template>
 
@@ -19,12 +22,8 @@
 export default {
   name: "FilmComponent",
   props: {
-    filmTitle: String,
-    filmTitleOrig: String,
-    filmOrigLang: String,
-    filmVote: Number,
+    filmCallObj: Object,
   },
-  created() {},
 };
 /* Milestone 1:
 Creare un layout base con una searchbar (una input e un button) in cui possiamo scrivere completamente o parzialmente il nome di un film. Possiamo, cliccando il  bottone, cercare sull’API tutti i film che contengono ciò che ha scritto l’utente.
