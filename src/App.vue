@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header @filmSearch="getFilm($event)" />
+    <Header @filmSearch="getSeries($event), getFilm($event)" />
     <Main :filmCall="filmList" />
   </div>
 </template>
@@ -19,21 +19,30 @@ export default {
   data() {
     return {
       //API PATH
-      queryPath:
-        "https://api.themoviedb.org/3/search/movie?api_key=7f52810091d935dae2806b7fc5d9448e",
+      queryPath: "https://api.themoviedb.org/3/search/",
       // query per cercare il contenito da inserire nel parametro
       filmSearch: "",
+      api_key: "7f52810091d935dae2806b7fc5d9448e",
+      language: "en-US",
       filmList: [],
+      seriesList: []
     };
+  },
+  created() {
+    
   },
   methods: {
     getFilm(text) {
       //il dato inserito dentro l'input diventa il paramentro da inserire dentro la chiamata axios
       this.filmSearch = text;
+      //categoria
+      const category = "movie";
       //chiamata axios
       axios
-        .get(this.queryPath, {
+        .get(`${this.queryPath}${category}`, {
           params: {
+            api_key: this.api_key,
+            lang: this.language,
             //parametro preso dal dato inserito dall'utente
             query: this.filmSearch,
           },
@@ -45,6 +54,21 @@ export default {
         })
         .catch();
     },
+  getSeries(text) {
+    this.filmSearch = text;
+    const category = "tv";
+    axios.get(`${this.queryPath}${category}`, {
+      params: {
+            api_key: this.api_key,
+            lang: this.language,
+            //parametro preso dal dato inserito dall'utente
+            query: this.filmSearch,
+          },
+    }).then((result2) => {
+      this.seriesList = result2
+      console.log(this.seriesList.data.results);
+    }).catch()
+  }
   },
 };
 </script>

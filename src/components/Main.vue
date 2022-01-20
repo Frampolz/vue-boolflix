@@ -1,12 +1,8 @@
 <template>
   <main>
     <ul>
-      <li>
-        <FilmComponent
-          v-for="(film, index) in filmCall"
-          :key="index"
-          :filmCallObj="film"
-        />
+      <li v-for="(film, index) in filmCall" :key="index">
+        <FilmComponent :filmCallObj="film" />
       </li>
     </ul>
   </main>
