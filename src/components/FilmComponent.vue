@@ -1,20 +1,17 @@
 <template>
   <div class="film-thumb">
     <h2>
-      {{ filmCallObj.title }}
+      {{ title }}
     </h2>
     <h3>
-      {{ filmCallObj.original_title }}
+      {{ titleOrig }}
     </h3>
     <h4>
-      {{ filmCallObj.original_language }}
+      {{ origLang }}
     </h4>
     <h5>
-      {{ filmCallObj.language }}
+      {{ vote }}
     </h5>
-    <h6>
-      {{ filmCallObj.vote_average }}
-    </h6>
   </div>
 </template>
 
@@ -22,7 +19,10 @@
 export default {
   name: "FilmComponent",
   props: {
-    filmCallObj: Object,
+    title: String,
+    titleOrig: String,
+    origLang: String,
+    vote: Number,
   },
 };
 </script>
