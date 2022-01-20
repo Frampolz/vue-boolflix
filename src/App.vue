@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @filmSearch="getFilm($event)" />
-    <Main />
+    <Main :filmCall="filmList" />
   </div>
 </template>
 
