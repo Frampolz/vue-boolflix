@@ -64,7 +64,7 @@ export default {
             if (element.vote_average > 5) {
               element.vote_average = element.vote_average / 2;
             }
-            element.vote_average = Math.round(element.vote_average)
+            element.vote_average = Math.round(element.vote_average);
           });
         })
         .catch();
@@ -94,10 +94,7 @@ export default {
             if (element.vote_average > 5) {
               element.vote_average = element.vote_average / 2;
             }
-            element.vote_average = Math.round(element.vote_average)
-            /* if(element.backdrop_path.includes("null")) {
-              
-            } */
+            element.vote_average = Math.round(element.vote_average);
           });
         })
         .catch();

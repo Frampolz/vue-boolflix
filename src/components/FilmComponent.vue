@@ -6,7 +6,17 @@
     <h3>
       {{ titleOrig }}
     </h3>
-    <img :src="`http://image.tmdb.org/t/p/w300/${image}`" :alt="title" />
+    <div class="images">
+      <img
+        v-if="image == null"
+        src="https://www.globalpharmatek.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.jpg"
+        alt=""
+        class="placeholder-img"
+      />
+
+      <img :src="`http://image.tmdb.org/t/p/w300/${image}`" :alt="title" />
+    </div>
+
     <h4>
       <span :class="`flag-icon flag-icon-${origLang}`"></span>
     </h4>
@@ -30,13 +40,14 @@ export default {
     image: String,
   },
   created() {
-   console.log(this.vote);
-    
-  }
+    console.log(this.vote);
+  },
 };
-
 </script>
 
 <style lang="scss">
 @import "../assets/scss/style.scss";
+.placeholder-img {
+  width: 300px;
+}
 </style>
