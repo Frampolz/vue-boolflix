@@ -21,6 +21,9 @@
       <span :class="`flag-icon flag-icon-${origLang}`"></span>
     </h4>
     <h5>
+      <p v-if="vote < 1">
+        <i v-for="n in 5" :key="n" class="far fa-star"></i>
+      </p>
       <i v-for="n in vote" :key="n" id="star" class="fas fa-star"></i>
     </h5>
   </div>
@@ -49,5 +52,8 @@ export default {
 @import "../assets/scss/style.scss";
 .placeholder-img {
   width: 300px;
+}
+.fa-star {
+  color: rgb(172, 172, 27);
 }
 </style>
