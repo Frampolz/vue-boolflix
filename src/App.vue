@@ -28,9 +28,13 @@ export default {
       seriesList: [],
       searchList: [],
       enFlag: "gb",
+      imgPlaceholder:
+        "https://www.signfix.com.au/wp-content/uploads/2017/09/placeholder-600x400.png",
     };
   },
-  created() {},
+  created() {
+    console.log(this.searchList);
+  },
   methods: {
     getFilm(text) {
       //il dato inserito dentro l'input diventa il paramentro da inserire dentro la chiamata axios
@@ -57,6 +61,10 @@ export default {
             if (element.original_language.includes("en")) {
               element.original_language = this.enFlag;
             }
+            if (element.vote_average > 5) {
+              element.vote_average = element.vote_average / 2;
+            }
+            element.vote_average = Math.round(element.vote_average)
           });
         })
         .catch();
@@ -75,7 +83,7 @@ export default {
         })
         .then((result2) => {
           this.seriesList = result2.data.results;
-          console.log(this.seriesList);
+          //console.log(this.seriesList);
           this.seriesList.forEach((element) => {
             this.searchList.push(element);
           });
@@ -83,6 +91,13 @@ export default {
             if (element.original_language.includes("en")) {
               element.original_language = this.enFlag;
             }
+            if (element.vote_average > 5) {
+              element.vote_average = element.vote_average / 2;
+            }
+            element.vote_average = Math.round(element.vote_average)
+            /* if(element.backdrop_path.includes("null")) {
+              
+            } */
           });
         })
         .catch();
