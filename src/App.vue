@@ -10,7 +10,6 @@ import axios from "axios";
 import Header from "./components/Header.vue";
 import Main from "./components/Main.vue";
 
-
 export default {
   name: "App",
   components: {
@@ -28,6 +27,7 @@ export default {
       filmList: [],
       seriesList: [],
       searchList: [],
+      enFlag: "gb",
     };
   },
   created() {},
@@ -53,6 +53,11 @@ export default {
           this.filmList.forEach((element) => {
             this.searchList.push(element);
           });
+          this.searchList.forEach((element) => {
+            if (element.original_language.includes("en")) {
+              element.original_language = this.enFlag;
+            }
+          });
         })
         .catch();
     },
@@ -70,9 +75,14 @@ export default {
         })
         .then((result2) => {
           this.seriesList = result2.data.results;
-          console.log(this.seriesList);
+          //console.log(this.seriesList);
           this.seriesList.forEach((element) => {
             this.searchList.push(element);
+          });
+          this.searchList.forEach((element) => {
+            if (element.original_language.includes("en")) {
+              element.original_language = this.enFlag;
+            }
           });
         })
         .catch();
@@ -82,7 +92,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }

@@ -18,25 +18,14 @@
 <script>
 export default {
   name: "FilmComponent",
+  data() {
+    return {};
+  },
   props: {
     title: String,
     titleOrig: String,
     origLang: String,
     vote: Number,
-  },
-  watch: {
-    origLang(val) {
-      console.log(val);
-    },
-  },
-  methods: {
-    changeFlag() {
-      if (this.origLang != "en") {
-        return this.origLang;
-      } else {
-        return this.origLang == "gb";
-      }
-    },
   },
 };
 </script>
