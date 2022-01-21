@@ -1,6 +1,5 @@
 <template>
   <main>
-    <span class="flag-icon flag-icon-gb"></span>
     <ul>
       <li v-for="(film, index) in filmCall" :key="index">
         <FilmComponent

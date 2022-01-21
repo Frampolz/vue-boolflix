@@ -1,6 +1,5 @@
 <template>
   <div class="film-thumb">
-    <span class="flag-icon flag-icon-en"></span>
     <h2>
       {{ title }}
     </h2>
@@ -25,10 +24,17 @@ export default {
     origLang: String,
     vote: Number,
   },
-  computed: {
-    changeflag() {
-      if (this.origLang == "en") {
-        return (this.origLang = "gb");
+  watch: {
+    origLang(val) {
+      console.log(val);
+    },
+  },
+  methods: {
+    changeFlag() {
+      if (this.origLang != "en") {
+        return this.origLang;
+      } else {
+        return this.origLang == "gb";
       }
     },
   },
