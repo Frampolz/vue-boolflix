@@ -5,6 +5,7 @@
         <FilmComponent
           :title="film.title || film.name"
           :titleOrig="film.original_title || film.original_name"
+          :image="film.backdrop_path"
           :origLang="film.original_language"
           :vote="film.vote_average"
         />

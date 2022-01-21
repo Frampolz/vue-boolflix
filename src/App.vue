@@ -75,7 +75,7 @@ export default {
         })
         .then((result2) => {
           this.seriesList = result2.data.results;
-          //console.log(this.seriesList);
+          console.log(this.seriesList);
           this.seriesList.forEach((element) => {
             this.searchList.push(element);
           });
