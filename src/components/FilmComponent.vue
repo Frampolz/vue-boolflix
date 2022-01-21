@@ -1,5 +1,6 @@
 <template>
   <div class="film-thumb">
+    <span class="flag-icon flag-icon-en"></span>
     <h2>
       {{ title }}
     </h2>
@@ -7,7 +8,7 @@
       {{ titleOrig }}
     </h3>
     <h4>
-      {{ origLang }}
+      <span :class="`flag-icon flag-icon-${origLang}`"></span>
     </h4>
     <h5>
       {{ vote }}
@@ -24,7 +25,16 @@ export default {
     origLang: String,
     vote: Number,
   },
+  computed: {
+    changeflag() {
+      if (this.origLang == "en") {
+        return (this.origLang = "gb");
+      }
+    },
+  },
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../assets/scss/style.scss";
+</style>

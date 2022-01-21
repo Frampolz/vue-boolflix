@@ -1,23 +1,14 @@
 <template>
   <main>
+    <span class="flag-icon flag-icon-gb"></span>
     <ul>
       <li v-for="(film, index) in filmCall" :key="index">
         <FilmComponent
-         :title="film.title"
-         :titleOrig="film.original_title"
-         :origLang="film.original_language"
-         :vote="film.vote_average"
-          />
-      </li>
-    </ul>
-    <ul>
-      <li v-for="(series, index) in seriesCall" :key="index">
-        <FilmComponent
-         :title="series.name"
-         :titleOrig="series.original_name"
-         :origLang="series.original_language"
-         :vote="series.vote_average"
-          />
+          :title="film.title || film.name"
+          :titleOrig="film.original_title || film.original_name"
+          :origLang="film.original_language"
+          :vote="film.vote_average"
+        />
       </li>
     </ul>
   </main>
@@ -48,4 +39,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../assets/scss/style.scss";
+</style>

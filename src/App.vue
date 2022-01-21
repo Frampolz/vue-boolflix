@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <Header @filmSearch="getSeries($event), getFilm($event)" />
-    <Main 
-    :filmCall="filmList"
-    :seriesCall="seriesList"
-     />
+    <Main :filmCall="searchList" />
   </div>
 </template>
 
@@ -12,6 +9,7 @@
 import axios from "axios";
 import Header from "./components/Header.vue";
 import Main from "./components/Main.vue";
+
 
 export default {
   name: "App",
@@ -25,10 +23,11 @@ export default {
       queryPath: "https://api.themoviedb.org/3/search/",
       // query per cercare il contenito da inserire nel parametro
       filmSearch: "",
-      api_key: "7f52810091d935dae2806b7fc5d9448e",
+      apiKey: "7f52810091d935dae2806b7fc5d9448e",
       language: "en-US",
       filmList: [],
       seriesList: [],
+      searchList: [],
     };
   },
   created() {},
@@ -42,7 +41,7 @@ export default {
       axios
         .get(`${this.queryPath}${category}`, {
           params: {
-            api_key: this.api_key,
+            api_key: this.apiKey,
             lang: this.language,
             //parametro preso dal dato inserito dall'utente
             query: this.filmSearch,
@@ -51,7 +50,9 @@ export default {
         .then((result) => {
           //dato restituito dalla chiamata axios
           this.filmList = result.data.results;
-          console.log(this.filmList);
+          this.filmList.forEach((element) => {
+            this.searchList.push(element);
+          });
         })
         .catch();
     },
@@ -61,15 +62,18 @@ export default {
       axios
         .get(`${this.queryPath}${category}`, {
           params: {
-            api_key: this.api_key,
+            api_key: this.apiKey,
             lang: this.language,
             //parametro preso dal dato inserito dall'utente
             query: this.filmSearch,
           },
         })
         .then((result2) => {
-          this.seriesList = result2;
-          console.log(this.seriesList.data.results);
+          this.seriesList = result2.data.results;
+          console.log(this.seriesList);
+          this.seriesList.forEach((element) => {
+            this.searchList.push(element);
+          });
         })
         .catch();
     },
@@ -78,6 +82,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
