@@ -1,11 +1,5 @@
 <template>
   <div class="film-thumb">
-    <h2>
-      {{ title }}
-    </h2>
-    <h3>
-      {{ titleOrig }}
-    </h3>
     <div class="images">
       <img
         v-if="image == null"
@@ -13,19 +7,25 @@
         alt=""
         class="placeholder-img"
       />
-
-      <img :src="`http://image.tmdb.org/t/p/w300/${image}`" :alt="title" />
+      <h2 v-if="image == null" class="placeholder-title">{{ title }} image</h2>
+      <img :src="`http://image.tmdb.org/t/p/w342/${image}`" alt="" />
     </div>
-
-    <h4>
-      <span :class="`flag-icon flag-icon-${origLang}`"></span>
-    </h4>
-    <h5>
-      <p v-if="vote < 1">
-        <i v-for="n in 5" :key="n" class="far fa-star"></i>
-      </p>
-      <i v-for="n in vote" :key="n" id="star" class="fas fa-star"></i>
-    </h5>
+    <div class="film-details">
+      <h2>titolo: {{ title }}</h2>
+      <h3>titolo originale: {{ titleOrig }}</h3>
+      <h4>
+        lingua originale:
+        <span :class="`flag-icon flag-icon-${origLang}`"></span>
+      </h4>
+      <h5>
+        <p v-if="vote < 1">
+          voto: <i v-for="n in 5" :key="n" class="far fa-star"></i>
+        </p>
+        <p v-if="vote > 1">
+          voto: <i v-for="n in vote" :key="n" id="star" class="fas fa-star"></i>
+        </p>
+      </h5>
+    </div>
   </div>
 </template>
 
@@ -42,18 +42,58 @@ export default {
     vote: Number,
     image: String,
   },
-  created() {
-    console.log(this.vote);
-  },
+  created() {},
 };
 </script>
 
 <style lang="scss">
 @import "../assets/scss/style.scss";
-.placeholder-img {
-  width: 300px;
-}
-.fa-star {
-  color: rgb(172, 172, 27);
+.film-thumb {
+  height: 100%;
+  &:hover {
+    border: 2px solid white;
+    background-color: black;
+  }
+  &:hover .images {
+    display: none;
+  }
+  &:hover .film-details {
+    display: block;
+  }
+  .images {
+    position: relative;
+    .placeholder-img {
+      width: 342px;
+      height: 192px;
+    }
+    .placeholder-title {
+      position: absolute;
+      top: 1em;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.9em;
+      color: rgb(92, 92, 92);
+    }
+  }
+
+  .film-details {
+    display: none;
+    height: 100%;
+    font-size: 0.7em;
+    padding: 2em;
+    color: white;
+    &:hover {
+      display: block;
+    }
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-bottom: 1em;
+    }
+    .fa-star {
+      color: $starColor;
+    }
+  }
 }
 </style>
