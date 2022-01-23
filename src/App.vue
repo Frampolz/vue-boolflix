@@ -70,6 +70,7 @@ export default {
         .catch();
     },
     getSeries(text) {
+      this.searchList.length = 0;
       this.filmSearch = text;
       const category = "tv";
       axios
@@ -104,7 +105,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/scss/style.scss';
+@import "./assets/scss/style.scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }

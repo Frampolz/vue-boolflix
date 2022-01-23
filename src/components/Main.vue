@@ -1,5 +1,5 @@
 <template>
-  <main class="main" :class="(filmCall) ? 'empty' : ''">
+  <main class="main" :class="filmCall ? 'empty' : ''">
     <ul v-if="filmCall" class="d-flex">
       <li v-for="(film, index) in filmCall" :key="index">
         <FilmComponent
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../node_modules/flag-icon-css/css/flag-icons.css';
+@import "../../node_modules/flag-icon-css/css/flag-icons.css";
 @import "../assets/scss/style.scss";
 .main {
   overflow: auto;

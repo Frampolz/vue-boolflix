@@ -2,16 +2,20 @@
   <header class="header d-flex">
     <div class="logo">
       <a href="">
-      <img
-        src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
-        alt=""
-      />
-
+        <img
+          src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
+          alt=""
+        />
       </a>
     </div>
     <div class="search">
-      <input  @keyup.enter="$emit('filmSearch', searchFilm)" type="text" placeholder="cerca" v-model="searchFilm" />
-      <i @click="$emit('filmSearch', searchFilm)" class="fas fa-search"></i>
+      <input
+        @keyup.enter="sendSearch()"
+        type="text"
+        placeholder="cerca"
+        v-model="searchFilm"
+      />
+      <i @click="sendSearch()" class="fas fa-search"></i>
     </div>
   </header>
 </template>
@@ -24,6 +28,13 @@ export default {
     return {
       searchFilm: "",
     };
+  },
+  created() {},
+  methods: {
+    sendSearch() {
+      this.$emit("filmSearch", this.searchFilm);
+      this.searchFilm = "";
+    },
   },
 };
 </script>
@@ -43,6 +54,15 @@ export default {
     }
   }
   .search {
+    input {
+      text-align: center;
+      border-radius: 4px;
+      &:focus {
+        outline: none;
+        border-color: red;
+        box-shadow: 0 0 5px red;
+      }
+    }
     .fa-search {
       color: white;
       margin-left: 1em;
