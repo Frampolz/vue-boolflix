@@ -1,12 +1,13 @@
 <template>
   <header class="header d-flex">
-    <div class="logo">
+    <div class="logo d-flex">
       <a href="">
         <img
           src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
           alt=""
         />
       </a>
+      <Menu />
     </div>
     <div class="search">
       <input
@@ -21,9 +22,12 @@
 </template>
 
 <script>
+import Menu from "./Menu.vue";
 export default {
   name: "Search",
-  components: {},
+  components: {
+    Menu,
+  },
   data() {
     return {
       searchFilm: "",
@@ -45,6 +49,7 @@ export default {
 
 .header {
   justify-content: space-between;
+  align-items: center;
   padding: 1em 2em;
   background-color: #121212;
   .logo {
